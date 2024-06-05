@@ -3,9 +3,9 @@ package com.ojt.first.excel;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -17,9 +17,9 @@ public class PostExcelHandlerImpl implements PostExcelHandler {
     private final static String[] EXCEL_EXTENSIONS = {"xls", "xlsx"};
 
     @Override
-    public boolean canParse(MultipartFile uploadFile) {
+    public boolean canParse(String fileName) {
 
-        String extension = FilenameUtils.getExtension(uploadFile.getOriginalFilename());
+        String extension = FilenameUtils.getExtension(fileName);
         return Arrays.asList(EXCEL_EXTENSIONS).contains(extension);
     }
 
@@ -28,9 +28,9 @@ public class PostExcelHandlerImpl implements PostExcelHandler {
     }
 
     @Override
-    public List<String> getHeaders(MultipartFile uploadFile) throws IOException {
+    public List<String> getHeaders(InputStream inputStream) throws IOException {
 
-        Workbook wb = WorkbookFactory.create(uploadFile.getInputStream());
+        Workbook wb = WorkbookFactory.create(inputStream);
 
         Iterator<Cell> headersIterator = getHeadersIterator(wb);    // Header 정보인 0번째 sheet의 0번째 row의 Iterator를 가져욘다.
         List<String> headers = toStringList(headersIterator);       // Iterator를 List<String>으로 변환

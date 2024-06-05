@@ -50,4 +50,5 @@ public enum UploadableRecord {
                 .orElseThrow(() -> new RuntimeException("임시"));
     }
 
+
 }
