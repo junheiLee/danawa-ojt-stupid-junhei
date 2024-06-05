@@ -3,7 +3,7 @@ package com.ojt.first.excel.handler;
 import java.io.File;
 import java.util.List;
 
-public class CategoryExcelHandler implements ExcelHandler{
+public class CategoryExcelHandler implements ExcelHandler {
 
     @Override
     public <T> List<T> toObjectList(File file) {
