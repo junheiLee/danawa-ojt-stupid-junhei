@@ -13,7 +13,7 @@ import java.util.function.Supplier;
  * 해당 파일을 파싱, 렌더할 수 있는 Handler
  */
 @Getter
-public enum UploadableRecord {
+public enum UploadableFileForm {
 
     CATEGORY(
             "카테고리",
@@ -36,15 +36,15 @@ public enum UploadableRecord {
     private final List<String> headers;
     private final Supplier<ExcelHandler> handler;
 
-    UploadableRecord(String condition, List<String> headers, Supplier<ExcelHandler> handler) {
+    UploadableFileForm(String condition, List<String> headers, Supplier<ExcelHandler> handler) {
         this.condition = condition;
         this.headers = headers;
         this.handler = handler;
     }
 
-    public static UploadableRecord get(String condition, List<String> headers) {
+    public static UploadableFileForm get(String condition, List<String> headers) {
 
-        return Arrays.stream(UploadableRecord.values())
+        return Arrays.stream(UploadableFileForm.values())
                 .filter(target -> target.condition.equals(condition) && target.headers.equals(headers))
                 .findAny()
                 .orElseThrow(() -> new RuntimeException("임시"));

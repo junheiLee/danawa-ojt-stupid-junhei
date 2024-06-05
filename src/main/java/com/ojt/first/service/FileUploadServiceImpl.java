@@ -1,6 +1,6 @@
 package com.ojt.first.service;
 
-import com.ojt.first.config.UploadableRecord;
+import com.ojt.first.config.UploadableFileForm;
 import com.ojt.first.dto.response.SaveExcelResponse;
 import com.ojt.first.excel.PostExcelHandler;
 import com.ojt.first.excel.handler.ExcelHandler;
@@ -28,8 +28,8 @@ public class FileUploadServiceImpl implements FileUploadService {
         }
 
         List<String> headers = postExcelHandler.getHeaders(uploadedExcelFile.getInputStream());
-        ExcelHandler handler = UploadableRecord.get(condition, headers).getHandler().get();
-        
+        ExcelHandler handler = UploadableFileForm.get(condition, headers).getHandler().get();
+
         return null;
     }
 }
